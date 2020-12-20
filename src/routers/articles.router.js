@@ -1,6 +1,7 @@
 
 const router = require('express').Router();
 const Article = require('../models/articles.model')
+const upload = require('../middleware/upload')
 
 // get all articles
 router.get('/', async (req, res) => {
@@ -15,29 +16,47 @@ router.get('/', async (req, res) => {
 // get an article
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-    try{
+    try {
         const article = await Article.findById(id)
-        if(!article){
+        if (!article) {
             return res.status(404).send()
         }
         res.status(200).send(article)
     }
     catch (error) {
-        res.status(500).send({error: error.message})
+        res.status(500).send({ error: error.message })
+    }
+})
+
+router.get('/:id/image', async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    try {
+        const article = await Article.findById(id)
+        if (!article || !article.image) {
+            return res.status(404).send()
+        }
+        console.log(article.image);
+        res.set('Content-Type', 'image/JPG')
+        res.status(200).send(article.image)
+    }
+    catch (error) {
+        res.status(500).send({ error: error.message })
     }
 })
 
 // create an article
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try{
         const article = new Article({...req.body})
+        //article.image = req.file.buffer
         await article.save()
         res.status(200).send(article)
     }
     catch (error) {
         res.status(500).send({error: error.message})
     }
-})
+}, (error, req, res, next)=> res.status(404).send({error: error.message}))
 
 // update an article
 router.patch('/:id', async (req, res) => {

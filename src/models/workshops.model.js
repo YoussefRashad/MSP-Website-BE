@@ -12,7 +12,7 @@ const workshopsSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    images: {
+    image: {
         type: Buffer,
         // required: true,
     },

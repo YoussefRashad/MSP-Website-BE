@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
-
 const Sponser = require('../models/sponsers.model')
+const upload = require('../middleware/upload')
 
 router.get('/', async (req, res) => {
     try {
@@ -25,15 +25,16 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         const sponser = new Sponser({ ...req.body })
+        //sponser.image = req.file.buffer
         await sponser.save()
         res.status(200).send(sponser)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
-})
+}, (error, req, res, next) => res.status(404).send({ error: error.message }))
 
 router.patch('/:id', async (req, res) => {
     const _id = req.params.id

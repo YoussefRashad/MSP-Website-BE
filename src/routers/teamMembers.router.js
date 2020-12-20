@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
-
 const TeamMember = require('../models/teamMembers.model')
+const upload = require('../middleware/upload')
 
 router.get('/', async (req, res) => {
     try {
@@ -25,15 +25,16 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         const teamMember = new TeamMember({ ...req.body })
+        // teamMember.image = req.file.buffer
         await teamMember.save()
         res.status(200).send(teamMember)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
-})
+}, (error, req, res, next) => res.status(404).send({ error: error.message }))
 
 router.patch('/:id', async (req, res) => {
     const _id = req.params.id

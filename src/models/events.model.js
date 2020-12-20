@@ -17,13 +17,17 @@ const eventsSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    images: {
+    image: {
         type: Buffer,
         // required: true,
     },
     feature: {
         type: Boolean,
         default: false
+    },
+    date:{
+        type: String,
+        required: true
     }
 }, {
     timestamps: true

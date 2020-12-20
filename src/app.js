@@ -6,7 +6,6 @@ require('./DB/connection')
 
 app.use(express.json())
 
-
 // Access Api
 // https://msp-tech-club-helwan.netlify.app/
 // origin:['http://localhost:3000','http://127.0.0.1:3000'],
@@ -45,5 +44,5 @@ app.use((req, res)=>{
 })
 
 
-const PORT = process.PORT || 3500;
+const PORT = process.env.PORT || 3500;
 app.listen(PORT, () => console.log(`server is up on port ${PORT}`))
