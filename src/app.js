@@ -8,13 +8,14 @@ app.use(express.json())
 
 // Access Api
 // https://msp-tech-club-helwan.netlify.app
-// origin:['http://localhost:3000','http://127.0.0.1:3000'],
+// origin:['http://localhost:3000','http://127.0.0.1:3000']
+const URL = require('./utils/URL')
 app.use(cors({
-    origin: ['https://msp-tech-club-helwan.netlify.app', 'https://msp-tech-club-helwan.netlify.app'],
+    origin: [URL, URL],
     credentials: true
 }));
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', "https://msp-tech-club-helwan.netlify.app");
+    res.header('Access-Control-Allow-Origin', URL);
     res.header('Access-Control-Allow-Headers', true);
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -29,6 +30,10 @@ const sponserRouter = require('./routers/sponsers.router')
 const teamMemberRouter = require('./routers/teamMembers.router')
 const workshopRouter = require('./routers/workshops.router')
 const feedbackRouter = require('./routers/feedback.router')
+const formEvent = require('./routers/formEvent.router')
+const formRecruitment = require('./routers/formRecruitment.router')
+const formEventAdmin = require('./routers/formEvent.Admin.router')
+const formRecruitmentAdmin = require('./routers/formRecruitment.Admin.router')
 
 
 app.use('/articles', articleRouter)
@@ -37,6 +42,10 @@ app.use('/sponsers', sponserRouter)
 app.use('/team-members', teamMemberRouter)
 app.use('/workshops', workshopRouter)
 app.use('/feedback', feedbackRouter)
+app.use('/form-event-admin', formEventAdmin)
+app.use('/form-recruitment-admin', formRecruitmentAdmin)
+app.use('/form-event', formEvent)
+app.use('/form-recruitment', formRecruitment)
 
 
 app.use((req, res)=>{
