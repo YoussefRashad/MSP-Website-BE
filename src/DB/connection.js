@@ -1,11 +1,9 @@
 
 const mongoose = require('mongoose');
+const DB_URL = require('../utils/URL').DB_URL
 
-mongoose.connect(process.env.MONGODB_URL || "mongodb+srv://YoussefRashad:0000112@msp-tech-club.cfjku.mongodb.net/MSP-Tech-Club?retryWrites=true&w=majority",{
+mongoose.connect(process.env.MONGODB_URL || DB_URL,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 });
-
-// "mongodb+srv://YoussefRashad:0000112@msp-tech-club.cfjku.mongodb.net/MSP-Tech-Club?retryWrites=true&w=majority"
-// 'mongodb://127.0.0.1:27017/MSP-Tech-Club'

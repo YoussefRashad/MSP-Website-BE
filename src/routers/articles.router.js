@@ -63,14 +63,14 @@ router.patch('/:id', async (req, res) => {
     const _id = req.params.id;
     const updates = Object.keys(req.body);
     const allowedUpdates = ['title', 'description', 'author']
-    const isAllowed = updates.every((update)=> allowedUpdates.includes(update))
-    if(!isAllowed){
+    const isAllowed = updates.every((update) => allowedUpdates.includes(update))
+    if (!isAllowed) {
         return res.status(404).send()
     }
 
-    try{
-        const article = await Article.findOne({_id})
-        if(!article){
+    try {
+        const article = await Article.findOne({ _id })
+        if (!article) {
             return res.status(404).send()
         }
         updates.forEach(update => article[update] = req.body[update])
@@ -78,7 +78,27 @@ router.patch('/:id', async (req, res) => {
         res.status(200).send(article)
     }
     catch (error) {
-        res.status(500).send({error: error.message})
+        res.status(500).send({ error: error.message })
+    }
+})
+
+// update an article
+router.patch('/comment-form/:id', async (req, res) => {
+    if(!req.body.comments){
+        return res.status(404).send()
+    }
+    const _id = req.params.id;
+    try {
+        const article = await Article.findOne({ _id })
+        if (!article) {
+            return res.status(404).send()
+        }
+        article.comments = [ ...article.comments,  req.body.comments]
+        await article.save()
+        res.status(200).send(article)
+    }
+    catch (error) {
+        res.status(500).send({ error: error.message })
     }
 })
 

@@ -24,6 +24,11 @@ const articlesSchema = mongoose.Schema({
     feature: {
         type: Boolean,
         default: false
+    },
+    comments:{
+        type: [{ name: String, image: String, title: String, comment: String,  
+                rate: Number, evaluate: Number, date: Date  }],
+        default: []
     }
 }, {
     timestamps: true

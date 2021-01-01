@@ -9,7 +9,8 @@ app.use(express.json())
 // Access Api
 // https://msp-tech-club-helwan.netlify.app
 // origin:['http://localhost:3000','http://127.0.0.1:3000']
-const URL = require('./utils/URL')
+const URL = require('./utils/URL').BE_URL
+
 app.use(cors({
     origin: [URL, URL],
     credentials: true
