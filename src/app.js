@@ -35,6 +35,7 @@ const formEvent = require('./routers/formEvent.router')
 const formRecruitment = require('./routers/formRecruitment.router')
 const formEventAdmin = require('./routers/formEvent.Admin.router')
 const formRecruitmentAdmin = require('./routers/formRecruitment.Admin.router')
+const adminRouter = require('./routers/admin.router')
 
 
 app.use('/articles', articleRouter)
@@ -47,7 +48,7 @@ app.use('/form-event-admin', formEventAdmin)
 app.use('/form-recruitment-admin', formRecruitmentAdmin)
 app.use('/form-event', formEvent)
 app.use('/form-recruitment', formRecruitment)
-
+app.use('/administration', adminRouter)
 
 app.use((req, res)=>{
     res.status(400).send()

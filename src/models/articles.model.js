@@ -27,7 +27,7 @@ const articlesSchema = mongoose.Schema({
     },
     comments:{
         type: [{ name: String, image: String, title: String, comment: String,  
-                rate: Number, evaluate: Number, date: Date  }],
+                rate: Number, evaluate: Number, date: String  }],
         default: []
     }
 }, {
