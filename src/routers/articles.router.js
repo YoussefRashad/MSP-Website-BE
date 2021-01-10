@@ -1,7 +1,6 @@
 
 const router = require('express').Router();
 const Article = require('../models/articles.model')
-const upload = require('../middleware/upload')
 
 // get all articles
 router.get('/', async (req, res) => {
@@ -46,17 +45,16 @@ router.get('/:id/image', async (req, res) => {
 })
 
 // create an article
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', async (req, res) => {
     try{
         const article = new Article({...req.body})
-        //article.image = req.file.buffer
         await article.save()
         res.status(200).send(article)
     }
     catch (error) {
         res.status(500).send({error: error.message})
     }
-}, (error, req, res, next)=> res.status(404).send({error: error.message}))
+})
 
 // update an article
 router.patch('/:id', async (req, res) => {

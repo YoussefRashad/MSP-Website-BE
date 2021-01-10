@@ -18,8 +18,8 @@ const articlesSchema = mongoose.Schema({
         trim: true
     },
     image: {
-        type: Buffer,
-        // required: true
+        type: String,
+        required: true
     },
     feature: {
         type: Boolean,

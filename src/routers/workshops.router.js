@@ -1,7 +1,6 @@
 
 const router = require('express').Router();
 const Workshop = require('../models/workshops.model')
-const upload = require('../middleware/upload')
 
 router.get('/', async (req, res) => {
     try {
@@ -25,10 +24,9 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const workshop = new Workshop({ ...req.body })
-        // workshop.image = req.file.buffer
         await workshop.save()
         res.status(200).send(workshop)
     } catch (error) {

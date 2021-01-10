@@ -13,8 +13,8 @@ const sponsersSchema = mongoose.Schema({
         trim: true
     },
     image: {
-        type: Buffer,
-        // required: true
+        type: String,
+        required: true,
     }
 }, {
     timestamps: true

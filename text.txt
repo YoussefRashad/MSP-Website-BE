@@ -1,5 +1,13 @@
 
 BE & DB
 --------
-// * SignIn, SignUp, LogOut
-// * Videos
+* SignIn, SignUp, LogOut
+* Videos
+
+* put an authentication level in all routes specific CUD operation
+    - must be an admin
+    - has a token auth
+    - has a permision to do the operation
+
+* put a description message for every error
+    
