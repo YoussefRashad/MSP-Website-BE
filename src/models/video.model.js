@@ -30,7 +30,7 @@ const videoSchema = new mongoose.Schema({
         trim: true,
         validate(val) {
             const sections = {
-                technical: ['prepartion', 'flutter', 'game development', 'data science'],
+                technical: ['preparation', 'flutter', 'game development', 'data science'],
                 operational: ['human resources', 'quality assurance', 'logistics'],
                 marketing: ['graphic design', 'photography & video production', 'digital marketing']
             }
@@ -55,6 +55,10 @@ const videoSchema = new mongoose.Schema({
             rate: Number, evaluate: Number, date: String
         }],
         default: []
+    },
+    feature:{
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true

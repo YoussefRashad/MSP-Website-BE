@@ -80,7 +80,7 @@ const userSchema = new mongoose.Schema({
             trim: true,
             validate(val) {
                 const sections = {
-                    technical : ['prepartion', 'flutter', 'game development', 'data science'], 
+                    technical : ['preparation', 'flutter', 'game development', 'data science'], 
                     operational : ['human resources', 'quality assurance', 'logistics'],
                     marketing: ['graphic design', 'photography & video production', 'digital marketing']
                 }
