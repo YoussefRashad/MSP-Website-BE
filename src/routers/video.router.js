@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     const _id = req.params.id
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['title', 'link', 'description', 'attatchement', 'committee', 'defaultImage']
+    const allowedUpdates = ['title', 'link', 'description', 'attatchement', 'committee', 'defaultImage', 'feature']
     const isAllowed = updates.every(update => allowedUpdates.includes(update))
     if (!isAllowed) {
         return res.status(404).send()
