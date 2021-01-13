@@ -14,6 +14,11 @@ const feedbackSchema = new mongoose.Schema({
             }
         }
     },
+    userName:{
+        type: String,
+        required: true,
+        trim: true
+    },
     title:{
         type: String,
         required: true,
