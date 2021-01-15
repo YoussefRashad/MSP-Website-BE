@@ -34,7 +34,6 @@ const videoSchema = new mongoose.Schema({
                 operational: ['human resources', 'quality assurance', 'logistics'],
                 marketing: ['graphic design', 'photography & video production', 'digital marketing']
             }
-            console.log(val);
             if ((!sections.technical.includes(val.toLowerCase()))) {
                 if ((!sections.operational.includes(val.toLowerCase()))) {
                     if ((!sections.marketing.includes(val.toLowerCase()))) {

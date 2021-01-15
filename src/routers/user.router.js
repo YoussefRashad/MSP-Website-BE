@@ -92,7 +92,7 @@ router.post('/logout', authUser, async (req, res) => {
 // update an user
 router.patch('/me', authUser, async (req, res) => {
     const updates   = Object.keys(req.body)
-    const allowedUpdates = ['userName', 'email', 'password', 'quote', 'season', 'feature', 'privilage', 'positionType', 'section', 'committee', 'image', 'linkedIn', 'image']
+    const allowedUpdates = ['userName', 'email', 'password', 'quote', 'season', 'feature', 'privilage', 'positionType', 'section', 'committee', 'image', 'linkedIn']
     
     const isAllowed = updates.every((update)=> allowedUpdates.includes(update))
     if(!isAllowed){

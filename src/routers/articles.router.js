@@ -27,23 +27,6 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.get('/:id/image', async (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-    try {
-        const article = await Article.findById(id)
-        if (!article || !article.image) {
-            return res.status(404).send()
-        }
-        console.log(article.image);
-        res.set('Content-Type', 'image/JPG')
-        res.status(200).send(article.image)
-    }
-    catch (error) {
-        res.status(500).send({ error: error.message })
-    }
-})
-
 // create an article
 router.post('/', async (req, res) => {
     try{
