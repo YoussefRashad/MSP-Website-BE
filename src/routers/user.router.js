@@ -5,10 +5,21 @@ const authUser = require('../middleware/authUser')
 
 // get all users
 router.get('/', async (req, res) => {
-    try{
+    try {
         const users = await User.find({})
         res.status(200).send(users)
-    }catch(error){
+    } catch (error) {
+        res.status(500).send({ error: error.message })
+    }
+})
+
+// get all team crew
+router.get('/crew', async (req, res) => {
+    try {
+        const users = await User.find({})
+        const crew = users.filter(user => !['member', 'other'].includes(user.privilage.positionType))
+        res.status(200).send(crew)
+    } catch (error) {
         res.status(500).send({ error: error.message })
     }
 })
