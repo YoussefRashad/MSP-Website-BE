@@ -7,7 +7,7 @@ require('./DB/connection')
 app.use(express.json())
 
 // Access Api
-// https://msp-tech-club-helwan.netlify.app
+// https://msp-tech-club-egypt.netlify.app
 // origin:['http://localhost:3000','http://127.0.0.1:3000']
 const URL = require('./utils/URL').BE_URL
 
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 // Routers
 const articleRouter = require('./routers/articles.router')
 const eventRouter = require('./routers/events.router')
-const sponserRouter = require('./routers/sponsers.router')
+const sponsorRouter = require('./routers/sponsors.router')
 const workshopRouter = require('./routers/workshops.router')
 const feedbackRouter = require('./routers/feedback.router')
 const formEvent = require('./routers/formEvent.router')
@@ -40,7 +40,7 @@ const videoRouter = require('./routers/video.router')
 
 app.use('/articles', articleRouter)
 app.use('/events', eventRouter)
-app.use('/sponsers', sponserRouter)
+app.use('/sponsors', sponsorRouter)
 app.use('/workshops', workshopRouter)
 app.use('/feedback', feedbackRouter)
 app.use('/form-event-admin', formEventAdmin)

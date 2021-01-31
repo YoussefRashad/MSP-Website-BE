@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const sponsersSchema = mongoose.Schema({
+const sponsorsSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -20,6 +20,6 @@ const sponsersSchema = mongoose.Schema({
     timestamps: true
 });
 
-const sponsersModels = mongoose.model('Sponser', sponsersSchema);
+const sponsorsModels = mongoose.model('Sponsor', sponsorsSchema);
 
-module.exports = sponsersModels;
+module.exports = sponsorsModels;

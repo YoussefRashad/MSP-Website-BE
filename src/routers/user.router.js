@@ -106,7 +106,7 @@ router.patch('/me', authUser, async (req, res) => {
                 if (req.body['privilage'] === 'true' || req.body['privilage'] === true){
                     req.user['privilage'] = { positionType: req.body['positionType'], section: req.body['section'], committee: req.body['committee'] }
                 }
-            } else if (update === 'positionType' || update === 'section' || update === 'committee') {
+            } else if(update === 'positionType' || update === 'section' || update === 'committee') {
                 // to skip these properties
             }else{
                 req.user[update] = req.body[update]

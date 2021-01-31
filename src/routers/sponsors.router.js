@@ -1,11 +1,11 @@
 
 const router = require('express').Router();
-const Sponser = require('../models/sponsers.model')
+const Sponsor = require('../models/sponsors.model')
 
 router.get('/', async (req, res) => {
     try {
-        const sponsers = await Sponser.find({})
-        res.status(200).send(sponsers)
+        const sponsors = await Sponsor.find({})
+        res.status(200).send(sponsors)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
@@ -14,11 +14,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const _id = req.params.id
     try {
-        const sponser = await Sponser.findById(_id)
-        if (!sponser) {
+        const sponsor = await Sponsor.findById(_id)
+        if (!sponsor) {
             return res.status(404).send()
         }
-        res.status(200).send(sponser)
+        res.status(200).send(sponsor)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
@@ -26,9 +26,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const sponser = new Sponser({ ...req.body })
-        await sponser.save()
-        res.status(200).send(sponser)
+        const sponsor = new Sponsor({ ...req.body })
+        await sponsor.save()
+        res.status(200).send(sponsor)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
@@ -43,13 +43,13 @@ router.patch('/:id', async (req, res) => {
         return res.status(404).send()
     }
     try {
-        const sponser = await Sponser.findOne({ _id })
-        if (!sponser) {
+        const sponsor = await Sponsor.findOne({ _id })
+        if (!sponsor) {
             return res.status(404).send()
         }
-        updates.forEach(update => sponser[update] = req.body[update])
-        await sponser.save()
-        res.status(200).send(sponser)
+        updates.forEach(update => sponsor[update] = req.body[update])
+        await sponsor.save()
+        res.status(200).send(sponsor)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
@@ -58,11 +58,11 @@ router.patch('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const _id = req.params.id;
     try {
-        const sponser = await Sponser.findByIdAndDelete(_id)
-        if (!sponser) {
+        const sponsor = await Sponsor.findByIdAndDelete(_id)
+        if (!sponsor) {
             return res.status(404).send()
         }
-        res.status(200).send(sponser)
+        res.status(200).send(sponsor)
     } catch (error) {
         res.status(500).send({ error: error.message })
     }
