@@ -9,14 +9,14 @@ app.use(express.json())
 // Access Api
 // https://msp-tech-club-egypt.netlify.app
 // origin:['http://localhost:3000','http://127.0.0.1:3000']
-const URL = require('./utils/URL').BE_URL
+const URL = require('./utils/URL').FE_URL
 
 app.use(cors({
     origin: [URL, URL],
     credentials: true
 }));
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', URL);
+    res.header('Access-Control-Allow-Origin', URL +', https://msp-tech-club-egypt2.netlify.app');
     res.header('Access-Control-Allow-Headers', true);
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
